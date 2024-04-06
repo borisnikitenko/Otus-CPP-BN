@@ -1,12 +1,28 @@
-﻿# CMakeList.txt : CMake project for Otus-CPP-BN, include source and define
-# project specific logic here.
+﻿# CMakeList.txt : Top-level CMake project file, do global configuration
+# and include sub-projects here.
 #
+cmake_minimum_required (VERSION 3.8)
 
-# Add source to this project's executable.
-add_executable (Otus-CPP-BN "Otus-CPP-BN.cpp" "Otus-CPP-BN.h")
-
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET Otus-CPP-BN PROPERTY CXX_STANDARD 20)
+# Enable Hot Reload for MSVC compilers if supported.
+if (POLICY CMP0141)
+  cmake_policy(SET CMP0141 NEW)
+  set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
 endif()
 
-# TODO: Add tests and install targets if needed.
+project ("Homework#2")
+
+# Include sub-projects.
+# add_subdirectory ("Otus-CPP-BN")
+
+add_executable(hello_world 
+    hello_world.cpp
+    example.cpp
+    example.h
+    todo_move_me_out.cpp
+    todo_move_me_out.h
+)
+
+set_target_properties(hello_world PROPERTIES
+    CXX_STANDARD 17
+    CXX_STANDARD_REQUIRED ON
+)
