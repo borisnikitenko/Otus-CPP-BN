@@ -7,7 +7,17 @@
 class Ball {
 public:
     Ball();
-    Ball(Velocity getVelocity, Point getCenter, double getRadius, double getMass, Color getColor); 
+    Ball(
+      Velocity mvlct, 
+      Point mctr, 
+      double mrd, 
+      double mms, 
+      Color mclr) : 
+      m_velocity(mvlct), 
+      m_center(mctr), 
+      m_color(mclr), 
+      m_rd(mrd), 
+      m_ms(mms){}; 
     
     //?? what the func should take?
     
@@ -22,6 +32,9 @@ public:
     Color getColor() const;
 
 private:
-    double rd{}; //what else should be put here?
-    double ms{};
+    Velocity m_velocity;
+    Point m_center;
+    Color m_color;
+    double m_rd; //what else should be put here?
+    double m_ms;
 };

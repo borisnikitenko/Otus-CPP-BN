@@ -9,7 +9,7 @@ Ball::Ball() = default;
  */
 void Ball::setVelocity(const Velocity& velocity) {
     // TODO: место для доработки
-    Velocity::Velocity();
+    m_velocity = velocity;
 }
 
 /**
@@ -18,7 +18,8 @@ void Ball::setVelocity(const Velocity& velocity) {
 Velocity Ball::getVelocity() const {
     // TODO: место для доработки
     //Velocity();
-    return Velocity::Velocity();
+    //return Velocity::Velocity();
+    return m_velocity;
 }
 
 /**
