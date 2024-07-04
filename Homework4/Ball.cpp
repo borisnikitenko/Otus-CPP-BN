@@ -9,9 +9,9 @@ Ball::Ball() = default;
  */
 void Ball::setVelocity(const Velocity& velocity) {
     // TODO: место для доработки
-    m_velocity = velocity;
+    // Velocity::setVector(Point{vx, vy});
+    Velocity::Velocity();
 }
-
 /**
  * @return скорость объекта
  */
@@ -36,7 +36,7 @@ void Ball::setColor(const Color& color) {
 
 Color Ball::getColor() const {
     //Color color;
-    return Color::Color();
+    return m_color;
 } 
 
 /**
@@ -69,7 +69,7 @@ void Ball::setCenter(const Point& center) {
 Point Ball::getCenter() const {
     // TODO: место для доработки
     //Point center;
-    return Point::Point();
+    return m_center;
 }
 
 /**
@@ -80,7 +80,7 @@ Point Ball::getCenter() const {
 double Ball::getRadius() const {
     // TODO: место для доработки
     //double radius = 0;
-    return 30.0;
+    return m_rd;
 }
 
 /**
@@ -92,8 +92,8 @@ double Ball::getRadius() const {
  */
 double Ball::getMass() const {
     // TODO: место для доработки
-    //double PI(3.1415926);
-    //double mass = M_PI * getRadius()^3 * 4. / 3;
-    double mass(30.0);
-    return mass;
+    // double PI(3.1415926);
+    //m_ms = M_PI * m_rd^3 * 4. / 3;
+    //double mass(30.0);
+    return m_ms;
 }

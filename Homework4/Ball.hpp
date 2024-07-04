@@ -8,12 +8,10 @@ class Ball {
 public:
     Ball();
     Ball(
-      Velocity mvlct, 
       Point mctr, 
       double mrd, 
       double mms, 
-      Color mclr) : 
-      m_velocity(mvlct), 
+      const Color& mclr) : 
       m_center(mctr), 
       m_color(mclr), 
       m_rd(mrd), 

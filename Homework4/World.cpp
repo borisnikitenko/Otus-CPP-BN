@@ -1,6 +1,7 @@
 #include "World.hpp"
 #include "Painter.hpp"
 #include <fstream>
+#include <cmath>
 
 // Длительность одного тика симуляции.
 // Подробнее см. update()
@@ -37,6 +38,7 @@ World::World(const std::string& worldFilePath) {
     double vx;
     double vy;
     double radius;
+    double mass=0;
 
     double red;
     double green;
@@ -64,12 +66,13 @@ World::World(const std::string& worldFilePath) {
         // Здесь не хватает самого главного - создания
         // объекта класса Ball со свойствами, прочитанными
         // выше, и его помещения в контейнер balls
+        mass = M_PI * std::pow(radius, 3) * 4.0 / 3.0;
 
-        Ball ball;
-        ball.setCenter(Point{x,y});
+        Ball ball(Point{x, y}, radius, mass, Color(red, green, blue));
+        //ball.setCenter(Point{x,y});
         ball.setVelocity(Velocity{Point{vx,vy}});
-        ball.setColor(Color{red,green,blue});
-        ball.getRadius();
+        //ball.setColor(Color{red,green,blue});
+        //ball.getRadius();
 
         // После того как мы каким-то образом
         // сконструируем объект Ball ball;
