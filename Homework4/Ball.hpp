@@ -17,15 +17,13 @@ public:
       m_rd(mrd), 
       m_ms(mms){}; 
     
-    //?? what the func should take?
-    
     void setVelocity(const Velocity& velocity);
     Velocity getVelocity() const;
     void draw(Painter& painter) const;
     void setCenter(const Point& center);
     Point getCenter() const;
     double getRadius() const;
-    double getMass() const;
+    double getMass();
     void setColor(const Color& color);
     Color getColor() const;
 
@@ -33,6 +31,6 @@ private:
     Velocity m_velocity;
     Point m_center;
     Color m_color;
-    double m_rd; //what else should be put here?
+    double m_rd; 
     double m_ms;
 };
