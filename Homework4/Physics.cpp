@@ -22,7 +22,8 @@ bool Physics::getCollidableness() const {
 void Physics::update(std::vector<Ball>& balls, const size_t ticks) const {
 
     for (size_t i = 0; i < ticks; ++i) {
-        move(balls);  
+        move(balls);
+        //collideWithBox(balls);
         
         if (m_isCollidable == true) {
          collideBalls(balls);

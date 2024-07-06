@@ -21,5 +21,5 @@ class Physics {
     Point topLeft;
     Point bottomRight;
     double timePerTick;
-    bool m_isCollidable;
+    bool m_isCollidable = false;
 };
