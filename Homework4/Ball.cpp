@@ -36,6 +36,14 @@ Color Ball::getColor() const {
 } 
 
 /**
+ * Getting the collidableness of the object
+ */
+
+bool Ball::isCollidable() const {
+    return m_iscldbl;
+}
+
+/**
  * @brief Выполняет отрисовку объекта
  * @details объект Ball абстрагирован от конкретного
  * способа отображения пикселей на экране. Он "знаком"

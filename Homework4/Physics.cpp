@@ -10,13 +10,24 @@ void Physics::setWorldBox(const Point& topLeft, const Point& bottomRight) {
     this->topLeft = topLeft;
     this->bottomRight = bottomRight;
 }
+void Physics::setCollidableness() {
+
+    m_isCollidable = &Ball::isCollidable;
+}
+
+bool Physics::getCollidableness() const {
+    return m_isCollidable;
+}
 
 void Physics::update(std::vector<Ball>& balls, const size_t ticks) const {
 
     for (size_t i = 0; i < ticks; ++i) {
-        move(balls);
-        collideWithBox(balls);
-        collideBalls(balls);
+        move(balls);  
+        
+        if (m_isCollidable == true) {
+         collideBalls(balls);
+         collideWithBox(balls);
+        }
     }
 }
 

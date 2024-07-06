@@ -26,6 +26,7 @@ public:
     double getMass();
     void setColor(const Color& color);
     Color getColor() const;
+    bool isCollidable() const;
 
 private:
     Velocity m_velocity;
@@ -33,4 +34,5 @@ private:
     Color m_color;
     double m_rd; 
     double m_ms;
+    bool m_iscldbl;
 };
