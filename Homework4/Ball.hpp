@@ -33,7 +33,7 @@ private:
     Velocity m_velocity;
     Point m_center;
     Color m_color;
-    double m_rd = 0; 
-    double m_ms = 0;
+    double m_rd = 0.; 
+    double m_ms = 0.;
     bool m_iscldbl = false;
 };
