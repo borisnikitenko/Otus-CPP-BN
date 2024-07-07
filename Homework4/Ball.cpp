@@ -20,14 +20,6 @@ Velocity Ball::getVelocity() const {
 }
 
 /**
- * Setting the object color
- */
-
-void Ball::setColor(const Color& color) {
-    m_color = color;
-   }
-
-/**
  * Getting the object color
  */
 
@@ -55,7 +47,6 @@ void Ball::draw(Painter& painter) const {
     // TODO: место для доработки
     painter.draw(getCenter(), getRadius(), getColor());
 }
-
 
 /**
  * Задает координаты центра объекта

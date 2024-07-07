@@ -13,13 +13,10 @@ class Physics {
     void collideWithBox(std::vector<Ball>& balls) const;
     void move(std::vector<Ball>& balls) const;
     void processCollision(Ball& a, Ball& b,
-                          double distanceBetweenCenters2) const;
-    void setCollidableness();
-    bool getCollidableness() const;
+                          double distanceBetweenCenters2) const;  
 
   private:
     Point topLeft;
     Point bottomRight;
     double timePerTick;
-    bool m_isCollidable = false;
-};
+    };

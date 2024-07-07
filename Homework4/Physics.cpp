@@ -10,26 +10,13 @@ void Physics::setWorldBox(const Point& topLeft, const Point& bottomRight) {
     this->topLeft = topLeft;
     this->bottomRight = bottomRight;
 }
-void Physics::setCollidableness() {
 
-    m_isCollidable = &Ball::isCollidable;
-}
-
-bool Physics::getCollidableness() const {
-    return m_isCollidable;
-}
-
-void Physics::update(std::vector<Ball>& balls, const size_t ticks) const {
-
-    for (size_t i = 0; i < ticks; ++i) {
-        move(balls);
-        //collideWithBox(balls);
-        
-        if (m_isCollidable == true) {
-         collideBalls(balls);
-         collideWithBox(balls);
-        }
-    }
+void Physics::update(std::vector<Ball>& balls, const size_t ticks) const {          
+    for (size_t i = 0; i < ticks; ++i) {               
+        move(balls);               
+        collideBalls(balls);
+        collideWithBox(balls);        
+      }    
 }
 
 void Physics::collideBalls(std::vector<Ball>& balls) const {
@@ -50,8 +37,13 @@ void Physics::collideBalls(std::vector<Ball>& balls) const {
 
 void Physics::collideWithBox(std::vector<Ball>& balls) const {
     for (Ball& ball : balls) {
+        bool collide = ball.isCollidable();
         const Point p = ball.getCenter();
         const double r = ball.getRadius();
+
+        //check if collision should occur and proceed accordingly
+        if (collide == true) {
+        
         // определяет, находится ли v в диапазоне (lo, hi) (не включая границы)
         auto isOutOfRange = [](double v, double lo, double hi) {
             return v < lo || v > hi;
@@ -66,6 +58,7 @@ void Physics::collideWithBox(std::vector<Ball>& balls) const {
             vector.y = -vector.y;
             ball.setVelocity(vector);
         }
+       }
     }
 }
 
@@ -79,6 +72,11 @@ void Physics::move(std::vector<Ball>& balls) const {
 
 void Physics::processCollision(Ball& a, Ball& b,
                                double distanceBetweenCenters2) const {
+    bool collide_a = a.isCollidable(), collide_b = b.isCollidable();
+
+    // check if collision should be processed and proceed accordingly
+    if (collide_a == true && collide_b == true) {
+    
     // нормированный вектор столкновения
     const Point normal =
         (b.getCenter() - a.getCenter()) / std::sqrt(distanceBetweenCenters2);
@@ -94,4 +92,5 @@ void Physics::processCollision(Ball& a, Ball& b,
     // задаем новые скорости мячей после столкновения
     a.setVelocity(Velocity(aV - normal * p * a.getMass()));
     b.setVelocity(Velocity(bV + normal * p * b.getMass()));
+    }
 }
