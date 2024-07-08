@@ -11,12 +11,12 @@ void Physics::setWorldBox(const Point& topLeft, const Point& bottomRight) {
     this->bottomRight = bottomRight;
 }
 
-void Physics::update(std::vector<Ball>& balls, const size_t ticks) const {          
-    for (size_t i = 0; i < ticks; ++i) {               
-        move(balls);               
+void Physics::update(std::vector<Ball>& balls, const size_t ticks) const {
+    for (size_t i = 0; i < ticks; ++i) {
+        move(balls);
         collideBalls(balls);
-        collideWithBox(balls);        
-      }    
+        collideWithBox(balls);
+    }
 }
 
 void Physics::collideBalls(std::vector<Ball>& balls) const {
@@ -41,24 +41,25 @@ void Physics::collideWithBox(std::vector<Ball>& balls) const {
         const Point p = ball.getCenter();
         const double r = ball.getRadius();
 
-        //check if collision should occur and proceed accordingly
+        // check if collision should occur and proceed accordingly
         if (collide == true) {
-        
-        // определяет, находится ли v в диапазоне (lo, hi) (не включая границы)
-        auto isOutOfRange = [](double v, double lo, double hi) {
-            return v < lo || v > hi;
-        };
 
-        if (isOutOfRange(p.x, topLeft.x + r, bottomRight.x - r)) {
-            Point vector = ball.getVelocity().vector();
-            vector.x = -vector.x;
-            ball.setVelocity(vector);
-        } else if (isOutOfRange(p.y, topLeft.y + r, bottomRight.y - r)) {
-            Point vector = ball.getVelocity().vector();
-            vector.y = -vector.y;
-            ball.setVelocity(vector);
+            // определяет, находится ли v в диапазоне (lo, hi) (не включая
+            // границы)
+            auto isOutOfRange = [](double v, double lo, double hi) {
+                return v < lo || v > hi;
+            };
+
+            if (isOutOfRange(p.x, topLeft.x + r, bottomRight.x - r)) {
+                Point vector = ball.getVelocity().vector();
+                vector.x = -vector.x;
+                ball.setVelocity(vector);
+            } else if (isOutOfRange(p.y, topLeft.y + r, bottomRight.y - r)) {
+                Point vector = ball.getVelocity().vector();
+                vector.y = -vector.y;
+                ball.setVelocity(vector);
+            }
         }
-       }
     }
 }
 
@@ -76,21 +77,21 @@ void Physics::processCollision(Ball& a, Ball& b,
 
     // check if collision should be processed and proceed accordingly
     if (collide_a == true && collide_b == true) {
-    
-    // нормированный вектор столкновения
-    const Point normal =
-        (b.getCenter() - a.getCenter()) / std::sqrt(distanceBetweenCenters2);
 
-    // получаем скорость в векторном виде
-    const Point aV = a.getVelocity().vector();
-    const Point bV = b.getVelocity().vector();
+        // нормированный вектор столкновения
+        const Point normal = (b.getCenter() - a.getCenter()) /
+                             std::sqrt(distanceBetweenCenters2);
 
-    // коэффициент p учитывает скорость обоих мячей
-    const double p =
-        2 * (dot(aV, normal) - dot(bV, normal)) / (a.getMass() + b.getMass());
+        // получаем скорость в векторном виде
+        const Point aV = a.getVelocity().vector();
+        const Point bV = b.getVelocity().vector();
 
-    // задаем новые скорости мячей после столкновения
-    a.setVelocity(Velocity(aV - normal * p * a.getMass()));
-    b.setVelocity(Velocity(bV + normal * p * b.getMass()));
+        // коэффициент p учитывает скорость обоих мячей
+        const double p = 2 * (dot(aV, normal) - dot(bV, normal)) /
+                         (a.getMass() + b.getMass());
+
+        // задаем новые скорости мячей после столкновения
+        a.setVelocity(Velocity(aV - normal * p * a.getMass()));
+        b.setVelocity(Velocity(bV + normal * p * b.getMass()));
     }
 }

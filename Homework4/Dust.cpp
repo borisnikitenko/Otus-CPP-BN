@@ -5,7 +5,7 @@ Dust::Dust() = default;
 /*set the velocity of the object*/
 
 void Dust::setVelocity(const Velocity& velocity) {
-	d_velocity = velocity;
+    d_velocity = velocity;
 }
 
 /*return the velocity of the object*/

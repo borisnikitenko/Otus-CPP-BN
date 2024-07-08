@@ -24,8 +24,8 @@ Velocity Ball::getVelocity() const {
  */
 
 Color Ball::getColor() const {
-   return m_color;
-} 
+    return m_color;
+}
 
 /**
  * Getting the collidableness of the object
