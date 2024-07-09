@@ -2,6 +2,9 @@
 
 Dust::Dust() = default;
 
+Dust::Dust(Point dctr, const Color& dclr, double drd, double dlifetime)
+    : d_center(dctr), d_color(dclr), d_radius(drd), d_lifetime(dlifetime){};
+
 /*set the velocity of the object*/
 
 void Dust::setVelocity(const Velocity& velocity) {

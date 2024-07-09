@@ -3,6 +3,9 @@
 
 Ball::Ball() = default;
 
+Ball::Ball(Point mctr, double mrd, double mms, const Color& mclr, bool iscldbl)
+    : m_center(mctr), m_color(mclr), m_rd(mrd), m_ms(mms), m_iscldbl(iscldbl){};
+
 /**
  * Задает скорость объекта
  * @param velocity новое значение скорости

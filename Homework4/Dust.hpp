@@ -7,9 +7,6 @@
 class Dust {
   public:
     Dust();
-    Dust(Point dctr, const Color& dclr, double drd, double dlifetime)
-        : d_center(dctr), d_color(dclr), d_radius(drd), d_lifetime(dlifetime){};
-
     void setVelocity(const Velocity& velocity);
     Velocity getVelocity() const;
     void draw(Painter& painter) const;
