@@ -69,10 +69,7 @@ World::World(const std::string& worldFilePath) {
 
         Ball ball(Point{x, y}, radius, mass, Color(red, green, blue),
                   isCollidable);
-        ball.getMass();
         ball.setVelocity(Velocity{Point{vx, vy}});
-        ball.getVelocity();
-        ball.isCollidable();
 
         // После того как мы каким-то образом
         // сконструируем объект Ball ball;
